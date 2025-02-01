@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Chatbot</title>
+<style>
+body {
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.chat-window {
+    height: 200px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+}
+
+.messages {
+    list-style: none;
+    padding: 0;
+}
+
+.message {
+    margin-bottom: 5px;
+}
+
+.user-message {
+    text-align: right;
+    color: #333;
+}
+
+.bot-message {
+    text-align: left;
+    color: #007bff;
+}
+
+.input-group {
+    display: flex;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Simple Chatbot</h2>
+    <div class="chat-window">
+        <ul class="messages"></ul>
+    </div>
+    <div class="input-group">
+        <input type="text" id="userInput" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+const messagesList = document.querySelector('.messages');
+const userInput = document.getElementById('userInput');
+
+function sendMessage() {
+    const userMessage = userInput.value;
+
+    if (userMessage.trim() === '') {
+        return;
+    }
+
+    // Display user message
+    const userMessageElement = document.createElement('li');
+    userMessageElement.classList.add('message', 'user-message');
+    userMessageElement.textContent = userMessage;
+    messagesList.appendChild(userMessageElement);
+
+    // Simulate bot response (replace with actual bot logic)
+    setTimeout(() => {
+        const botMessageElement = document.createElement('li');
+        botMessageElement.classList.add('message', 'bot-message');
+        botMessageElement.textContent = "You said: '" + userMessage + "'"; // Replace with actual bot response
+        messagesList.appendChild(botMessageElement);
+
+        // Scroll to the bottom of the chat window
+        messagesList.scrollTop = messagesList.scrollHeight;
+    }, 500); // Simulate a slight delay for the bot's response
+
+    userInput.value = '';
+}
+</script>
+
+</body>
+</html>
